@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="imgs/favicon-32x32.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
     <title>PHP: Marvel x DC</title>
 </head>
 <body>
@@ -39,7 +40,9 @@
                     }
                 }
 
-                mostrarHeroi($universo, $img_heroi);
+                ?>
+                <section class="heroi"><?php mostrarHeroi($universo, $img_heroi); ?></section>
+                <?php
             }
 
             function mostrarHeroi($universo, $img_heroi){
@@ -47,15 +50,19 @@
                     msgInvalido($img_heroi);
                 }else{
                     ?>
-                    <img src="imgs/<?php echo $img_heroi; ?>" >
+                    <figure>
+                        <img src="imgs/<?php echo $img_heroi; ?>" ><br>
+                    </figure>
+                    <a href="index.php" class="btn">Voltar</a>
                     <?php
                 }
             }
 
             function msgInvalido($img_heroi){
                 ?>
-                <h1>:(</h1><br>
-                <h3><?php echo $img_heroi; ?></h3>
+                <h2>:(</h2><br>
+                <h3><?php echo $img_heroi; ?></h3><br>
+                <a href="index.php" class="btn">Voltar</a>
                 <?php
             }
         ?>
