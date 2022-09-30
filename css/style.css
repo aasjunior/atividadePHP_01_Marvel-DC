@@ -28,6 +28,10 @@ main{
     justify-content: center;
     align-items: center;
 }
+h1{
+    font-size: 1.1em;
+    font-weight: 600;
+}
 h2{
     font-size: calc(var(--font-size) * 4);
     font-weight: lighter;
