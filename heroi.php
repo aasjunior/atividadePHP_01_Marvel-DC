@@ -11,7 +11,7 @@
 <body>
     <main>
         <?php
-            if(!empty($_POST['nome_heroi'])){
+            if(!empty($_POST['nome_heroi'])){//Verifica se 
                 $nome_heroi = strtolower($_POST['nome_heroi']);
                 $universo = strtolower($_POST['universo']);
                 if($universo=="dc"){
@@ -20,7 +20,16 @@
                             $img_heroi = "dc/batman.jpg";
                             break;
                         case "mulher-maravilha":
-                            $img_heroi = $universo . "dc/mulher-maravilha.jpg";
+                            $img_heroi = "dc/mulher-maravilha.jpg";
+                            break;
+                        case "rorschach":
+                            $img_heroi = "dc/rorschach.jpg";
+                            break;
+                        case "supergirl":
+                            $img_heroi = "dc/supergirl.jpg";
+                            break;
+                        case "superman":
+                            $img_heroi = "dc/superman.jpg";
                             break;
                         default:
                             $img_heroi = "Herói inválido.";
@@ -28,11 +37,20 @@
                     }
                 }else if($universo=="marvel"){
                     switch($nome_heroi){
-                        case "wolverine":
-                            $img_heroi = "marvel/wolverine.jpg";
+                        case "homem-aranha":
+                            $img_heroi = "marvel/homem-aranha.jpg";
+                            break;
+                        case "homem de ferro":
+                            $img_heroi = "marvel/homem-de-ferro.jpg";
+                            break;
+                        case "motoqueiro-fantasma":
+                            $img_heroi = "marvel/motoqueiro-fantasma.jpg";
                             break;
                         case "vampira":
-                            $img_heroi = $universo . "marvel/vampira.jpg";
+                            $img_heroi = "marvel/vampira.jpg";
+                            break;
+                        case "wolverine":
+                            $img_heroi = "marvel/wolverine.jpg";
                             break;
                         default:
                             $img_heroi = "Herói inválido.";
@@ -43,11 +61,17 @@
                 ?>
                 <section class="heroi"><?php mostrarHeroi($universo, $img_heroi); ?></section>
                 <?php
+            }else{
+                $universo = $_POST['universo'];
+                $img_heroi = "Digite um herói!!!";
+                ?>
+                <section class="heroi"><?php msgInvalido($universo, $img_heroi); ?></section>
+                <?php
             }
 
             function mostrarHeroi($universo, $img_heroi){
                 if($img_heroi=="Herói inválido."){
-                    msgInvalido($img_heroi);
+                    msgInvalido($universo, $img_heroi);
                 }else{
                     ?>
                     <figure>
@@ -58,11 +82,14 @@
                 }
             }
 
-            function msgInvalido($img_heroi){
+            function msgInvalido($universo, $img_heroi){
                 ?>
-                <h2>:(</h2><br>
-                <h3><?php echo $img_heroi; ?></h3><br>
-                <a href="index.php" class="btn">Voltar</a>
+                <form action="universo.php" method="post">
+                    <input type="hidden" name="universo" value="<?php echo $universo;?>">    
+                    <h2>:(</h2><br>
+                    <h3><?php echo $img_heroi; ?></h3><br>
+                    <input type="submit" value="Voltar" class="btn">
+                </form>
                 <?php
             }
         ?>
